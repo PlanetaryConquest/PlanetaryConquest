@@ -17,6 +17,10 @@
 .DS_Store
 .trashes
 thumbs.db
+.project
+.settings
+.cproject
+Debug
 
 # logs
 log/*
