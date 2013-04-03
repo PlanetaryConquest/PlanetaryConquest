@@ -1,22 +1,24 @@
-define(["client/gui/Frame"], function (Frame) {
+define(["client/gui/Frame", "client/models/GameMap"], function (Frame, GameMap) {
   var frame;
+  var map;
   var startTime;
   var tickListeners = [];
 
   function setCanvas(newCanvas) {
-    if (!frame) frame = new Frame(newCanvas);
+    if (!frame) frame = Frame.getInstance(newCanvas);
   }
 
   function tick() {
     window.requestAnimationFrame(tick);
     var elapsedTime = Date.now() - startTime;
     tickListeners.forEach(function (listener) {
-      listener(elapsedTime);
+      listener.tick(elapsedTime);
     });
-    frame.tick(elapsedTime);
+    frame.tick(elapsedTime); // the frame isn't a tickListener because it MUST be the last to be ticked.
   }
 
   function startGameLoop() {
+    map = GameMap.getInstance();
     startTime = Date.now();
     tick();
   }
