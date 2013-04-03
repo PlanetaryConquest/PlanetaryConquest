@@ -1,15 +1,22 @@
-require("source-map-support").install()
+requirejs = require "requirejs"
+requirejs.config nodeRequire: require
 
-express = require "express"
-app     = express()
-server  = require("http").createServer app
-io      = require("socket.io").listen server
+requirejs ["source-map-support", "express", "http", "socket.io"], (sms, express, http, socketio) ->
+  sms.install()
 
-app.use express.static "#{__dirname}/client"
-app.use "/client", express.static "#{__dirname}/client" # hack to make source maps work
-app.use express.logger()
+  app     = express()
+  server  = http.createServer app
+  io      = socketio.listen server
 
-server.listen process.env.PORT or 3000
+  app.use "/client", express.static "#{__dirname}/client"
+  app.use "/common", express.static "#{__dirname}/common"
 
-io.sockets.on "connection", (socket) ->
-  console.log "connection"
+  app.use express.logger()
+
+  app.get "/", (req, res) ->
+    res.redirect "/client"
+
+  server.listen process.env.PORT or 3000
+
+  io.sockets.on "connection", (socket) ->
+    console.log "connection"

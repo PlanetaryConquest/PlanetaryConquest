@@ -1,4 +1,4 @@
-define ["gui/Frame"], (Frame) ->
+define ["client/gui/Frame"], (Frame) ->
   frame         = undefined
   startTime     = 0
   tickListeners = []
