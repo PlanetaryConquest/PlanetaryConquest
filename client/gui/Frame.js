@@ -3,12 +3,22 @@ define(["client/gui/Board", "client/gui/Toolbar", "client/gui/View"], function (
 
   var instance;
 
+  /**
+   * Get a reference to the Frame.
+   * @param  {HTMLCanvasElement} canvas The canvas tag to draw to.
+   * @return {Frame}
+   */
   Frame.getInstance = function getInstance(canvas) {
     if (instance) return instance;
     instance = new Frame(canvas);
     return instance;
   };
 
+  /**
+   * A singleton representing the top of the view hierarchy.
+   * @param {HTMLCanvasElement} canvas
+   * @api private
+   */
   function Frame(canvas) {
     if (instance) throw new Error("reinitializing singleton");
     Super(this)(undefined, 0, 0, window.innerWidth, window.innerHeight);
