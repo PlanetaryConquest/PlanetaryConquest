@@ -1,3 +1,5 @@
-require [], ->
-  console.log "foo"
-  throw new Error "test"
+require ["game"], (game) ->
+  canvas = document.createElement "canvas"
+  document.body.appendChild canvas
+  game.setCanvas canvas
+  game.startGameLoop()

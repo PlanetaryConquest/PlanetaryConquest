@@ -4,7 +4,8 @@ log/*
 logs/*
 *.map
 *.js
-!script/*
+!script/*.js
+!lib/*.js
 
 .trashes
 .DS_Store
