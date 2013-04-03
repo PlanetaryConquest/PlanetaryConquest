@@ -1,0 +1,19 @@
+{
+  "name": "PlanetaryConquest",
+  "version": "0.0.0",
+  "description": "A game",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "TBD",
+  "dependencies": {
+    "socket.io": "~0.9.14",
+    "coffee-script": "~1.6.2",
+    "source-map-support": "~0.1.2",
+    "express": "~3.1.1",
+    "connect-coffee-script": "~0.1.3"
+  }
+}
